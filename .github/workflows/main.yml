@@ -58,6 +58,7 @@ jobs:
 
       - name: docker compose 실행
         run: |
+          git clone https://github.com/dagyeomJung/kosa-devops-step2.git
           cd ~/kosa-devops-step2
           docker compose -f docker-compose_nginx.yml up -d
         
