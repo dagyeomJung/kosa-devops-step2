@@ -18,11 +18,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-
-      # - name: git clone하기 
-        # run: |
-        #   rm -rf kosa-devops-step2
-        #   git clone https://github.com/dagyeomJung/kosa-devops-step2.git
+        with:
+          clean: true
 
       - name: 현재 디렉토리 확인
         run: ls -al  && pwd  
@@ -61,34 +58,13 @@ jobs:
     needs: build
     name: Deploy
     runs-on: self-hosted
-    steps:
-      # # copy yml file from src
-      # - uses: actions/checkout@v3
-      #   with:
-      #     sparse-checkout: |
-      #       docker-compose_nginx.yml
-      #       nginx/nginx.conf
-      #     sparse-checkout-cone-mode: false
-      #     clean: true
-      
-      - name: 파일 다운로드
-        uses: actions/download-artifact@v4
-        with: 
-          name: my-artifact
-          # path: docker-compose_nginx.yml
-
-      - name: docker login
-        uses: docker/login-action@v1
-        with:
-          username: ${{ env.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+    steps:      
+      - name: 운영서버로 파일 복사 및 실행
+        run: 
+          ssh aws-master "mkdir kosa-devops-step2"
+          scp ./docker-compose_nginx.yml aws-master:~/kosa-devops-step2
+          scp ./nginx/nginx.conf aws-master:~/kosa-devops-step2/nginx/nginx.conf
 
           
-      - name: docker image pull
-        run: docker pull ${{ env.DOCKER_USERNAME }}/devops_step2:v3.0
-
-      - name: docker compose 실행
-        run: docker compose -f docker-compose_nginx.yml up -d
-        
 
     
