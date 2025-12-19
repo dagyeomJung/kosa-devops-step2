@@ -15,12 +15,12 @@ services:
       - my_bridge_network
 
   app1:
-    image: seyeon6302/devops_step2
+    image: seyeon6302/devops_step2:v3.0
     networks:
       - my_bridge_network
 
   app2:
-    image: seyeon6302/devops_step2
+    image: seyeon6302/devops_step2:v3.0
     networks:
       - my_bridge_network
 
