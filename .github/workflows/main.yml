@@ -44,14 +44,6 @@ jobs:
       
       - name: docker image 허브에 저장
         run: docker push ${{ env.DOCKER_USERNAME }}/devops_step2:v3.0
-
-      - name: 파일 업로드 
-        uses: actions/upload-artifact@v4
-        with:
-          name: my-artifact
-          path: |
-            docker-compose_nginx.yml      
-            nginx/nginx.conf
       
   
   deploy:
@@ -60,7 +52,7 @@ jobs:
     runs-on: self-hosted
     steps:      
       - name: 운영서버로 파일 복사 및 실행
-        run: 
+        run: |
           ssh aws-master "mkdir kosa-devops-step2"
           scp ./docker-compose_nginx.yml aws-master:~/kosa-devops-step2
           scp ./nginx/nginx.conf aws-master:~/kosa-devops-step2/nginx/nginx.conf
