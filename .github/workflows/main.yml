@@ -6,7 +6,7 @@ on:
 
 defaults:
   run:
-    working-directory: /home/kosa/devops-runner/_work/kosa-devops-step2
+    working-directory: /home/kosa/devops-runner/_work/kosa-devops-step2/kosa-devops-step2
 
 env:
   DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
