@@ -10,12 +10,7 @@ env:
 
 jobs:
   build:
-    # runs-on: ubuntu-latest
     runs-on: self-hosted
-
-    # defaults:
-    #   run:
-    #     working-directory: kosa-devops-step2
     
     steps:
       - uses: actions/checkout@v3
@@ -26,7 +21,12 @@ jobs:
       #   with:
       #     java-version: '17'
       #     distribution: 'temurin'
-        
+
+      - name: 현재 디렉토리 확인
+        run: ls -al    
+      
+      - run: find . -name gradlew
+
       - name: gradlew 파일 실행 권한 설정 
         run: chmod +x gradlew
           
