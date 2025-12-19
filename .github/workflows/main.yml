@@ -53,7 +53,7 @@ jobs:
     steps:      
       - name: 운영서버로 파일 복사 및 실행
         run: |
-          ssh aws-master "mkdir -p kosa-devops-step2"
+          ssh aws-master "mkdir -p ~/kosa-devops-step2/nginx"
           scp ./docker-compose_nginx.yml aws-master:~/kosa-devops-step2
           scp ./nginx/nginx.conf aws-master:~/kosa-devops-step2/nginx/nginx.conf
 
