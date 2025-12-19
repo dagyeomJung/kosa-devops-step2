@@ -41,11 +41,11 @@ jobs:
       
       - name: docker image 허브에 저장
         run: docker push ${{ env.DOCKER_USERNAME }}/devops_step2:v3.0
-        
+
       - name: 파일 업로드 
         uses: actions/upload-artifact@v4
         with:
-          name: my-actifact
+          name: my-artifact
           path: docker-compose_nginx.yml      
       
   
@@ -66,8 +66,8 @@ jobs:
       - name: 파일 다운로드
         uses: actions/download-artifact@v4
         with: 
-          name: my-acrifact
-          path: ./docker-compose_nginx.yml
+          name: my-artifact
+          path: docker-compose_nginx.yml
 
       - name: docker login
         uses: docker/login-action@v1
